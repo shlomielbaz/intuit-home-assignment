@@ -23,8 +23,9 @@ spring.datasource.password=admin
 <hr>
 
 #### API End Points:
-* ```GET /api/players``` - returns the list of all players.
-* ```GET /api/players/{playerID}``` - returns a single player by ID.
+* `GET /api/players[?pageNo=<NUMBER>&pageSize=<NUMBER>&sortBy=<STRING>&sortDirection=<ASC|DESC>]` - returns a list of players by page.
+* `GET /api/players/all` - returns the list of all players.
+* `GET /api/players/{playerID}` - returns a single player by ID.
 
 In order to improve the API consuming I add a pagination mechanism use, in order to limit the response payload size use a params: pageNo, pageSize, sortBy and, sortDirection, the defaults are:
 
@@ -35,6 +36,22 @@ In order to improve the API consuming I add a pagination mechanism use, in order
 @RequestParam(defaultValue = "ASC") String sortDirection
 ```
 e.g.: `http://localhost:8080/api/players/?pageNo=2&pageSize=1`
+
+
+The pagination response payload is: 
+```json
+{
+    "content": [
+        {
+            ...
+        },
+        ...
+    ],
+    "numberOfElements": 1,
+    "totalElements": 19370,
+    "totalPages": 19370
+}
+```
 
 <hr>
 
