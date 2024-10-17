@@ -1,14 +1,13 @@
 # Intuit Home Assignment
 Below is the implementation corresponding to the linked [requirement](REQUIREMENTS.md).
 
-Despite the small number of UI components and the lack of necessity for state management, I utilized ```useContext``` for managing state across components.
-
-As well as the server, since there are a few end-points to handle, I used minimum abstraction to avoid over-engineering.
+Since there are a few end-points to handle, I used minimum abstraction to avoid over-engineering for such a small project :-).
 
 The server was built with [Java Spring Boot](https://spring.io/projects/spring-boot).
 
 #### A few comments:
-To take advantage of the capabilities of databases, I chose to dump the data from the CSV file into an in-memory database (Java h2 DB). it is transparent and still, you can access the DB through the link ```http://localhost:8080/h2-console```
+To take advantage of the capabilities of databases, I chose to dump the data from the CSV file into an in-memory database (Java H2 DB). 
+When the service is running, you can access to the DB through the link [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
 
 #### H2 Connection Details:
 ```
@@ -22,7 +21,6 @@ spring.datasource.password=admin
 <img width="1376" alt="image" src="https://github.com/user-attachments/assets/e8da47a7-dedd-4acf-b3d1-3a8c21488918">
 
 <hr>
-
 
 #### API End Points:
 * ```GET /api/players``` - returns the list of all players.
