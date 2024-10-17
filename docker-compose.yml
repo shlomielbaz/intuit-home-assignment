@@ -1,0 +1,46 @@
+services:
+  api:
+    container_name: intuit_api
+    build:
+      context: ./api-service/
+      dockerfile: Dockerfile
+    ports:
+      - '8080:8080'
+    restart: on-failure
+    networks:
+      - api_network
+    volumes:
+      - ./:/src
+
+  # ui:
+  #   container_name: intuit_ui
+  #   build:
+  #     context: ./ui-service/
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - '3000:3000'
+  #   restart: on-failure
+  #   networks:
+  #     - ui_network
+  #   volumes:
+  #     - ./:/src
+
+  # nginx:
+  #   container_name: intuit_nginx
+  #   build:
+  #     context: ./nginx-service/
+  #   restart: always
+  #   # tty: true
+  #   ports:
+  #     - 80:80
+  #   networks:
+  #     - nginx_network
+  #   depends_on:
+  #      - api
+  #      - ui
+
+networks:
+  # nginx_network:
+  #   driver: bridge
+  api_network:
+    driver: bridge
