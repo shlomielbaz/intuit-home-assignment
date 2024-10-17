@@ -39,15 +39,27 @@ public class PlayerService {
         return repository.findAll();
     }
 
-    public Player save(Player user) {
+    public Player createPlayer(Player user) {
         return repository.save(user);
     }
 
-    public void save(List<Player> players) {
+    public void createPlayers(List<Player> players) {
         repository.saveAll(players);
     }
 
     public Optional<Player> findById(String id) {
         return repository.findById(id);
+    }
+
+//    public Player updatePlayer(String id, Player player) {
+//        var p = repository.findById(id);
+//
+//        if (p != null) {
+//            return repository.save(player);
+//        }
+//    }
+
+    public void deletePlayer(String id) {
+        repository.deleteById(id);
     }
 }

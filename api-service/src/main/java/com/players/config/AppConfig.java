@@ -34,7 +34,7 @@ public class AppConfig {
                         .build();
 
                 List<Player> players = csvToBean.parse();
-                service.save(players);
+                service.createPlayers(players);
             } catch (IOException e) {
                 e.printStackTrace();
             }

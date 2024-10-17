@@ -1,7 +1,8 @@
-package com.players.service;
+package com.players;
 
 import com.players.domain.entity.Player;
 import com.players.repository.PlayerRepository;
+import com.players.service.PlayerService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -47,6 +48,8 @@ public class PlayerServiceTests {
             return page;
         };
     }
+
+
 
     @Test
     public void findByIdTest() {

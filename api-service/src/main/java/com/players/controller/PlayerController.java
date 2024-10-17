@@ -83,4 +83,22 @@ public class PlayerController {
             return new ResponseEntity(String.format("ERROR: %s", e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping
+    public ResponseEntity<Player> createPlayer(@RequestBody Player player) {
+        Player createdPlayer = service.createPlayer(player);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdPlayer);
+    }
+
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Player> updatePlayer(@PathVariable String id, @RequestBody Player player) {
+//        Player updatedPlayer = service.updatePlayer(id, player);
+//        return ResponseEntity.ok(updatedPlayer);
+//    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePlayer(@PathVariable String id) {
+        service.deletePlayer(id);
+        return ResponseEntity.noContent().build();
+    }
 }
