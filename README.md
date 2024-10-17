@@ -10,17 +10,37 @@ The server was built with [Java Spring Boot](https://spring.io/projects/spring-b
 #### A few comments:
 To take advantage of the capabilities of databases, I chose to dump the data from the CSV file into an in-memory database (Java h2 DB). it is transparent and still, you can access the DB through the link ```http://localhost:8080/h2-console```
 
+#### H2 Connection Details:
 ```
 spring.datasource.url=jdbc:h2:mem:players_db
 spring.datasource.username=admin
 spring.datasource.password=admin
 ```
-
+#### H2 Snapshots:
 <img width="754" alt="image" src="https://github.com/user-attachments/assets/a6adec9a-1b0d-4932-9c74-b2a53783df87">
 
+<img width="1376" alt="image" src="https://github.com/user-attachments/assets/e8da47a7-dedd-4acf-b3d1-3a8c21488918">
 
-I would do differently if I had more time...
+<hr>
 
+
+#### API End Points:
+* ```GET /api/players``` - returns the list of all players.
+* ```GET /api/players/{playerID}``` - returns a single player by ID.
+
+In order to improve the API consuming I add a pagination mechanism use, in order to limit the response payload size use a params: pageNo, pageSize, sortBy and, sortDirection, the defaults are:
+
+```java
+@RequestParam(defaultValue = "0") int pageNo,
+@RequestParam(defaultValue = "10") int pageSize,
+@RequestParam(defaultValue = "nameFirst") String sortBy,
+@RequestParam(defaultValue = "ASC") String sortDirection
+```
+e.g.: `http://localhost:8080/api/players/?pageNo=2&pageSize=1`
+
+<hr>
+
+### If I had more time I would do differently ...
 Depending on the system requirements and predictions of what loads the system has to withstand or in what mode it will run (SAAS, etc.), I would do the following differently:
 
 ##### In terms of the application (server):
@@ -28,7 +48,7 @@ Depending on the system requirements and predictions of what loads the system ha
 - In terms of DB, I would normalize the DB with entity representation or use a no-SQL machine such as MongoDB.
 - Use of various types of tests in a comprehensive manner such as unit tests, and integration tests to monitor and verify the integrity of the system in any changes.
 - Use managed server API-consuming mechanisms such as GraphQL to add flexibility while consuming data from the server.
-- 
+
 ##### In terms of the infrastructure:
 - I suggest using cache mechanism support depending on the scale requirements.
 - Consider supporting high scales (horizontal/verticle)
@@ -39,12 +59,6 @@ Depending on the system requirements and predictions of what loads the system ha
 ##### In terms of the clean code and code standards:
 - Writing reusable code utilizing generics, OOP (inheritance, abstraction), etc.
 - Enhance the code cohesion utilizing design patterns and S.O.L.I.D principles, etc.
-
-<hr>
-
-#### API End Points:
-* ```GET /api/players``` - returns the list of all players.
-* ```GET /api/players/{playerID}``` - returns a single player by ID
 
 <hr>
 
@@ -86,7 +100,7 @@ from the folder root run the following commands:
 
 
 #### Docker multi-stage builds
-I choose to use Docker multi-stage builds to shrink the container size, especially for the client service, for example:
+I choose to use Docker multi-stage builds in order to deliver only the JAR package and not the source files, the multi stage DockerFile content:
 
 ```Dockerfile
 # Use an OpenJDK 17 base image for Maven to build the application
