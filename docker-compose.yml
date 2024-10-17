@@ -12,19 +12,6 @@ services:
     volumes:
       - ./:/src
 
-  # ui:
-  #   container_name: intuit_ui
-  #   build:
-  #     context: ./ui-service/
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - '3000:3000'
-  #   restart: on-failure
-  #   networks:
-  #     - ui_network
-  #   volumes:
-  #     - ./:/src
-
   # nginx:
   #   container_name: intuit_nginx
   #   build:
@@ -37,7 +24,6 @@ services:
   #     - nginx_network
   #   depends_on:
   #      - api
-  #      - ui
 
 networks:
   # nginx_network:
