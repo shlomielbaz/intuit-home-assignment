@@ -47,9 +47,9 @@ The pagination response payload is:
         },
         ...
     ],
-    "numberOfElements": 1,
+    "numberOfElements": 10,
     "totalElements": 19370,
-    "totalPages": 19370
+    "totalPages": 1937
 }
 ```
 
